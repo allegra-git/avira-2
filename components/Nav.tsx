@@ -19,8 +19,8 @@ export default function Nav() {
         zIndex: 9,
         height: '80px',
         width: '100%',
-        backgroundColor: scrolled ? '#F7F3E8' : 'transparent',
-        boxShadow: scrolled ? '0 1px 0 rgba(0,0,0,0.08)' : 'none',
+        backgroundColor: scrolled ? 'rgba(30,32,34,0.96)' : 'transparent',
+        boxShadow: scrolled ? '0 1px 0 rgba(10,10,10,0.4)' : 'none',
         transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
       }}
     >
@@ -31,9 +31,9 @@ export default function Nav() {
           style={{
             fontFamily: 'var(--font-sans), sans-serif',
             fontSize: '18px',
-            fontWeight: 700,
-            color: '#E93A37',
-            letterSpacing: '0.15em',
+            fontWeight: 200,
+            color: '#dfe1e2',
+            letterSpacing: '0.2em',
             textTransform: 'uppercase',
             textDecoration: 'none',
           }}
@@ -48,14 +48,16 @@ export default function Nav() {
               <a
                 href={`/${label.toLowerCase()}`}
                 style={{
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  color: '#000000',
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '13px',
+                  fontWeight: 200,
+                  color: '#dfe1e2',
+                  opacity: 0.7,
                   textDecoration: 'none',
                   transition: 'opacity 0.2s',
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}
               >
                 {label}
               </a>
@@ -68,11 +70,13 @@ export default function Nav() {
           <a
             href="/shop"
             style={{
-              backgroundColor: '#85837C',
-              color: '#FBF9F4',
+              fontFamily: 'var(--font-sans)',
+              backgroundColor: '#dfe1e2',
+              color: '#0d0d0d',
               padding: '10px 20px',
-              borderRadius: '4px',
-              fontSize: '14px',
+              borderRadius: '2px',
+              fontSize: '13px',
+              fontWeight: 200,
               textDecoration: 'none',
               transition: 'opacity 0.2s',
             }}
@@ -84,9 +88,11 @@ export default function Nav() {
           <a
             href="/contact"
             style={{
+              fontFamily: 'var(--font-sans)',
               backgroundColor: 'transparent',
-              color: '#000000',
-              fontSize: '14px',
+              color: '#dfe1e2',
+              opacity: 0.6,
+              fontSize: '13px',
               padding: '10px 16px',
               textDecoration: 'none',
             }}
@@ -100,9 +106,9 @@ export default function Nav() {
           className="md:hidden flex flex-col justify-center items-center gap-[5px] w-8 h-8 bg-transparent border-none cursor-pointer p-0"
           aria-label="Open menu"
         >
-          <span className="block w-6 h-[2px] bg-black" />
-          <span className="block w-6 h-[2px] bg-black" />
-          <span className="block w-6 h-[2px] bg-black" />
+          <span className="block w-6 h-[2px] bg-[#dfe1e2]" />
+          <span className="block w-6 h-[2px] bg-[#dfe1e2]" />
+          <span className="block w-6 h-[2px] bg-[#dfe1e2]" />
         </button>
       </div>
     </nav>

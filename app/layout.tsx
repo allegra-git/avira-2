@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Jost } from "next/font/google";
 import "./globals.css";
 
-const dmSans = DM_Sans({
+const jost = Jost({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["200", "300"],
   display: "swap",
 });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} h-full antialiased`}>
+    <html lang="en" className={`${jost.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

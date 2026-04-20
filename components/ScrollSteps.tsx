@@ -1,90 +1,72 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const steps = [
   {
     tab: '01 SOURCE',
     label: 'RECLAIMED MATERIAL SOURCING',
-    title: (
-      <>
-        {'NO'}
-        <strong style={{ fontWeight: 700 }}>{' SHORTCUTS,'}</strong>
-        {' /\nNO'}
-        <strong style={{ fontWeight: 700 }}>{' WAITING'}</strong>
-      </>
-    ),
+    title: 'NO SHORTCUTS,\nNO WAITING',
     description:
       'We source exclusively from certified yacht breakers and sailing clubs across Europe. Every plank of teak, every sheet of carbon, every steel fitting is checked for marine provenance before it enters our workshop.',
     bullets: [
-      { word: 'Source', text: 'reclaimed teak and carbon from certified yacht breakers' },
-      { word: 'Verify', text: 'marine provenance checked before acquisition' },
-      { word: 'Catalogue', text: 'every material logged with vessel history' },
+      'Source — reclaimed teak and carbon from certified yacht breakers',
+      'Verify — marine provenance checked before acquisition',
+      'Catalogue — every material logged with vessel history',
     ],
-    imageBg: '#7a6040',
+    imageBg: '#2a2016',
     imageText: 'SOURCE',
   },
   {
     tab: '02 CRAFT',
     label: 'HAND WORKSHOP PRODUCTION',
-    title: (
-      <>
-        {'YOUR /\nMATERIAL, /\nMADE /\nPURPOSEFUL'}
-      </>
-    ),
+    title: 'YOUR MATERIAL,\nMADE PURPOSEFUL',
     description:
       'Each piece is CNC-routed, welded or woven by hand in our Geneva workshop. No injection moulding, no batch production — every AVIRA is built as a single commission.',
     bullets: [
-      { word: 'Cut', text: 'precision CNC routing of teak and carbon' },
-      { word: 'Shape', text: 'hand-formed 316L stainless steel' },
-      { word: 'Assemble', text: 'each component fitted by hand' },
+      'Cut — precision CNC routing of teak and carbon',
+      'Shape — hand-formed 316L stainless steel',
+      'Assemble — each component fitted by hand',
     ],
-    imageBg: '#2a2a28',
+    imageBg: '#0d0d0d',
     imageText: 'CRAFT',
   },
   {
     tab: '03 FINISH',
     label: 'PRECISION SURFACE FINISHING',
-    title: (
-      <>
-        {'DETAILS /\nTHAT /\nMATTER'}
-      </>
-    ),
+    title: 'DETAILS\nTHAT MATTER',
     description:
       'Brushing, engraving, rope-weaving. The final finish of each piece takes longer than building it. We work to a standard your fingertips will notice before your eyes do.',
     bullets: [
-      { word: 'Brush', text: 'directional grain applied to all steel surfaces' },
-      { word: 'Engrave', text: 'CNC-cut concentric patterns into teak' },
-      { word: 'Inspect', text: 'every piece approved against our finish standard' },
+      'Brush — directional grain applied to all steel surfaces',
+      'Engrave — CNC-cut concentric patterns into teak',
+      'Inspect — every piece approved against our finish standard',
     ],
-    imageBg: '#7e8285',
+    imageBg: '#3a3d40',
     imageText: 'FINISH',
   },
   {
     tab: '04 DELIVER',
     label: 'WHITE-GLOVE DELIVERY',
-    title: (
-      <>
-        {'READY /\nFOR YOUR /\nSPACE'}
-      </>
-    ),
+    title: 'READY FOR\nYOUR SPACE',
     description:
       'Each AVIRA arrives gift-packaged in a custom kraft box with a certificate of provenance — the boat it came from, the year it sailed.',
     bullets: [
-      { word: 'Package', text: 'custom kraft box, tissue-wrapped' },
-      { word: 'Certify', text: 'vessel provenance certificate included' },
-      { word: 'Deliver', text: 'courier tracked to your door' },
+      'Package — custom kraft box, tissue-wrapped',
+      'Certify — vessel provenance certificate included',
+      'Deliver — courier tracked to your door',
     ],
-    imageBg: '#3a4a3a',
+    imageBg: '#1a1c1e',
     imageText: 'DELIVER',
   },
 ]
 
 export default function ScrollSteps() {
   const [activeStep, setActiveStep] = useState(0)
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([])
 
+  // Scroll observer — drives active tab on scroll
   useEffect(() => {
-    const panels = document.querySelectorAll('.step-panel')
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -95,20 +77,25 @@ export default function ScrollSteps() {
       },
       { rootMargin: '-40% 0px -40% 0px' }
     )
-    panels.forEach((p) => observer.observe(p))
+    panelRefs.current.forEach((p) => p && observer.observe(p))
     return () => observer.disconnect()
   }, [])
 
+  // Click handler — scroll to panel
+  const scrollToStep = (index: number) => {
+    panelRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+  }
+
   return (
-    <section style={{ position: 'relative', backgroundColor: '#F7F3E8' }}>
+    <section style={{ position: 'relative', backgroundColor: '#1e2022' }}>
       {/* Sticky tab bar */}
       <div
         style={{
           position: 'sticky',
           top: 80,
           zIndex: 8,
-          backgroundColor: '#F7F3E8',
-          borderBottom: '1px solid rgba(0,0,0,0.1)',
+          backgroundColor: 'rgba(30,32,34,0.97)',
+          borderBottom: '1px solid rgba(223,225,226,0.08)',
         }}
       >
         <div
@@ -116,26 +103,33 @@ export default function ScrollSteps() {
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
             padding: '0 80px',
-            overflowX: 'auto',
           }}
-          className="no-scrollbar"
+          className="max-md:!grid-cols-none max-md:!flex max-md:!overflow-x-auto no-scrollbar max-md:!px-4"
         >
           {steps.map((step, i) => (
-            <div
+            <button
               key={i}
+              onClick={() => scrollToStep(i)}
               style={{
                 padding: '20px 0',
-                fontSize: 14,
+                fontSize: 13,
                 textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                color: activeStep === i ? '#E93A37' : '#ADAAA2',
+                letterSpacing: '0.12em',
                 fontFamily: 'var(--font-sans)',
-                minWidth: 120,
+                fontWeight: 200,
+                color: activeStep === i ? '#dfe1e2' : 'rgba(223,225,226,0.3)',
+                background: 'none',
+                border: 'none',
+                borderBottom: activeStep === i ? '1px solid #dfe1e2' : '1px solid transparent',
+                cursor: 'pointer',
+                textAlign: 'left',
+                transition: 'color 0.2s',
                 whiteSpace: 'nowrap',
               }}
+              className="max-md:!min-w-[120px]"
             >
               {step.tab}
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -144,6 +138,7 @@ export default function ScrollSteps() {
       {steps.map((step, i) => (
         <div
           key={i}
+          ref={(el) => { panelRefs.current[i] = el }}
           className="step-panel"
           data-index={i}
           style={{
@@ -159,92 +154,77 @@ export default function ScrollSteps() {
             style={{
               width: '55%',
               height: 900,
-              backgroundColor: step.imageBg,
-              borderRadius: 4,
+              borderRadius: 2,
               overflow: 'hidden',
               flexShrink: 0,
+              backgroundColor: step.imageBg,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              color: 'rgba(223,225,226,0.15)',
+              fontSize: 11,
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 200,
             }}
           >
-            <span
-              style={{
-                color: 'rgba(255,255,255,0.3)',
-                fontSize: 14,
-                textTransform: 'uppercase',
-                letterSpacing: '0.3em',
-                fontFamily: 'var(--font-sans)',
-              }}
-            >
-              {step.imageText}
-            </span>
+            {step.imageText}
           </div>
 
           {/* Right: text */}
-          <div
-            style={{
-              width: '40%',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 24,
-            }}
-          >
-            {/* Step label */}
+          <div style={{ width: '40%', display: 'flex', flexDirection: 'column', gap: 24 }}>
             <span
               style={{
-                fontSize: 16,
-                color: '#ADAAA2',
+                fontSize: 13,
+                color: 'rgba(223,225,226,0.4)',
                 textTransform: 'uppercase',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.12em',
                 fontFamily: 'var(--font-sans)',
+                fontWeight: 200,
               }}
             >
               {step.label}
             </span>
-
-            {/* H2 title */}
             <h2
               style={{
                 fontSize: 60,
-                color: '#E93A37',
+                fontWeight: 200,
+                color: '#dfe1e2',
                 textTransform: 'uppercase',
                 lineHeight: 1.0,
-                margin: 0,
                 fontFamily: 'var(--font-sans)',
+                margin: 0,
                 whiteSpace: 'pre-line',
               }}
             >
               {step.title}
             </h2>
-
-            {/* Description */}
             <p
               style={{
                 fontSize: 16,
-                color: '#85837C',
-                lineHeight: 1.6,
-                margin: 0,
+                color: 'rgba(223,225,226,0.55)',
+                lineHeight: 1.7,
                 fontFamily: 'var(--font-sans)',
+                fontWeight: 200,
+                margin: 0,
               }}
             >
               {step.description}
             </p>
-
-            {/* Bullet list */}
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {step.bullets.map((bullet, j) => (
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {step.bullets.map((b, bi) => (
                 <li
-                  key={j}
+                  key={bi}
                   style={{
-                    fontSize: 16,
-                    color: '#85837C',
+                    fontSize: 15,
+                    color: 'rgba(223,225,226,0.5)',
                     fontFamily: 'var(--font-sans)',
+                    fontWeight: 200,
                   }}
                 >
-                  <strong style={{ color: '#000', fontWeight: 700 }}>{bullet.word}</strong>
-                  {' — '}
-                  {bullet.text}
+                  <strong style={{ color: '#dfe1e2', fontWeight: 200 }}>{b.split('—')[0]}</strong>
+                  {b.includes('—') ? '—' + b.split('—')[1] : ''}
                 </li>
               ))}
             </ul>
@@ -252,7 +232,6 @@ export default function ScrollSteps() {
         </div>
       ))}
 
-      {/* Hide scrollbar utility */}
       <style>{`
         .no-scrollbar { scrollbar-width: none; }
         .no-scrollbar::-webkit-scrollbar { display: none; }

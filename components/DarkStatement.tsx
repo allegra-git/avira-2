@@ -1,22 +1,22 @@
 const stats = [
-  { value: "100%", label: "reclaimed origin" },
-  { value: "0", label: "synthetic materials" },
-  { value: "Each", label: "piece unique" },
-];
+  { value: '100%', label: 'reclaimed origin' },
+  { value: '0', label: 'synthetic materials' },
+  { value: 'Each', label: 'piece unique' },
+]
 
 export default function DarkStatement() {
   return (
-    <section style={{ backgroundColor: "#6E6E68" }}>
+    <section style={{ backgroundColor: '#0d0d0d' }}>
       {/* Top two-column text block */}
       <div
         style={{
-          maxWidth: "1440px",
-          margin: "0 auto",
-          padding: "80px 80px 64px 80px",
-          display: "grid",
-          gridTemplateColumns: "50% 50%",
-          gap: "48px",
-          alignItems: "start",
+          maxWidth: '1440px',
+          margin: '0 auto',
+          padding: '80px 80px 64px 80px',
+          display: 'grid',
+          gridTemplateColumns: '50% 50%',
+          gap: '48px',
+          alignItems: 'start',
         }}
         className="max-md:!grid-cols-1 max-md:!px-6 max-md:!pt-12 max-md:!pb-10"
       >
@@ -24,52 +24,54 @@ export default function DarkStatement() {
         <div>
           <span
             style={{
-              fontSize: "16px",
-              fontWeight: 400,
-              color: "#D3D1C9",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              marginBottom: "16px",
-              display: "block",
-              fontFamily: "var(--font-sans)",
+              fontSize: '13px',
+              fontWeight: 200,
+              color: 'rgba(223,225,226,0.4)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.15em',
+              marginBottom: '16px',
+              display: 'block',
+              fontFamily: 'var(--font-sans)',
             }}
           >
             EXCEPTIONAL CRAFTSMANSHIP
           </span>
           <h2
             style={{
-              fontSize: "60px",
-              color: "#F7F3E8",
-              textTransform: "uppercase",
+              fontSize: '60px',
+              fontWeight: 200,
+              color: '#dfe1e2',
+              textTransform: 'uppercase',
               lineHeight: 1.0,
-              fontFamily: "var(--font-sans)",
+              fontFamily: 'var(--font-sans)',
               margin: 0,
             }}
             className="max-md:!text-[30px]"
           >
-            <span style={{ fontWeight: 400, display: "block" }}>THE</span>
-            <span style={{ fontWeight: 400, display: "block" }}>PURPOSEFUL</span>
-            <span style={{ fontWeight: 400, display: "block" }}>WAY TO MAKE</span>
-            <span style={{ fontWeight: 400, display: "block" }}>OBJECTS</span>
+            <span style={{ display: 'block' }}>THE</span>
+            <span style={{ display: 'block' }}>PURPOSEFUL</span>
+            <span style={{ display: 'block' }}>WAY TO MAKE</span>
+            <span style={{ display: 'block' }}>OBJECTS</span>
           </h2>
         </div>
 
         {/* Right column */}
         <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "24px",
-            justifyContent: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            justifyContent: 'center',
           }}
         >
           <p
             style={{
-              fontSize: "20px",
-              color: "#F7F3E8",
+              fontSize: '18px',
+              fontWeight: 200,
+              color: 'rgba(223,225,226,0.55)',
               lineHeight: 1.6,
-              maxWidth: "480px",
-              fontFamily: "var(--font-sans)",
+              maxWidth: '480px',
+              fontFamily: 'var(--font-sans)',
               margin: 0,
             }}
             className="max-md:!text-base"
@@ -80,18 +82,21 @@ export default function DarkStatement() {
           </p>
 
           {/* Button row */}
-          <div style={{ display: "flex", gap: "12px" }}>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <button
               type="button"
               style={{
-                backgroundColor: "transparent",
-                border: "1px solid #85837C",
-                color: "#85837C",
-                padding: "14px 20px",
-                borderRadius: "4px",
-                fontSize: "16px",
-                cursor: "pointer",
-                fontFamily: "var(--font-sans)",
+                backgroundColor: 'transparent',
+                border: '1px solid rgba(223,225,226,0.25)',
+                color: 'rgba(223,225,226,0.6)',
+                padding: '13px 20px',
+                borderRadius: '2px',
+                fontSize: '13px',
+                fontWeight: 200,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                cursor: 'pointer',
+                fontFamily: 'var(--font-sans)',
               }}
             >
               View materials
@@ -99,14 +104,17 @@ export default function DarkStatement() {
             <button
               type="button"
               style={{
-                backgroundColor: "#E93A37",
-                color: "#FBF9F4",
-                padding: "14px 20px",
-                borderRadius: "4px",
-                fontSize: "16px",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "var(--font-sans)",
+                backgroundColor: '#dfe1e2',
+                color: '#0d0d0d',
+                padding: '13px 20px',
+                borderRadius: '2px',
+                fontSize: '13px',
+                fontWeight: 200,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'var(--font-sans)',
               }}
             >
               View collection
@@ -114,36 +122,37 @@ export default function DarkStatement() {
           </div>
 
           {/* Stats block */}
-          <div style={{ marginTop: "32px" }}>
+          <div style={{ marginTop: '32px' }}>
             <span
               style={{
-                fontSize: "14px",
-                color: "#ADAAA2",
-                textTransform: "uppercase",
-                letterSpacing: "0.1em",
-                marginBottom: "12px",
-                display: "block",
-                fontFamily: "var(--font-sans)",
+                fontSize: '13px',
+                fontWeight: 200,
+                color: 'rgba(223,225,226,0.4)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '12px',
+                display: 'block',
+                fontFamily: 'var(--font-sans)',
               }}
             >
               WITH AVIRA YOUR HOME CAN
             </span>
             <div
               style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 1fr)",
-                gap: "24px",
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3, 1fr)',
+                gap: '24px',
               }}
             >
               {stats.map((stat) => (
                 <div key={stat.label}>
                   <span
                     style={{
-                      fontSize: "32px",
-                      fontWeight: 700,
-                      color: "#F7F3E8",
-                      display: "block",
-                      fontFamily: "var(--font-sans)",
+                      fontSize: '32px',
+                      fontWeight: 200,
+                      color: '#dfe1e2',
+                      display: 'block',
+                      fontFamily: 'var(--font-sans)',
                     }}
                     className="max-md:!text-2xl"
                   >
@@ -151,9 +160,10 @@ export default function DarkStatement() {
                   </span>
                   <span
                     style={{
-                      fontSize: "14px",
-                      color: "#ADAAA2",
-                      fontFamily: "var(--font-sans)",
+                      fontSize: '13px',
+                      color: 'rgba(223,225,226,0.4)',
+                      fontFamily: 'var(--font-sans)',
+                      fontWeight: 200,
                     }}
                   >
                     {stat.label}
@@ -168,22 +178,23 @@ export default function DarkStatement() {
       {/* Large image placeholder */}
       <div
         style={{
-          width: "100%",
-          height: "700px",
-          backgroundColor: "#3a3a36",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#6E6E68",
-          fontSize: "14px",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          fontFamily: "var(--font-sans)",
+          width: '100%',
+          height: '700px',
+          backgroundColor: '#1e2022',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'rgba(223,225,226,0.15)',
+          fontSize: '11px',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+          fontFamily: 'var(--font-sans)',
+          fontWeight: 200,
         }}
         className="max-md:!h-[300px]"
       >
         WORKSHOP
       </div>
     </section>
-  );
+  )
 }

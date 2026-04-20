@@ -10,14 +10,6 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -37,66 +29,59 @@
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
 }
 
 /* ============================================
-   AVIRA DESIGN TOKENS
-   Brand: Objects of Purpose
-   Cloned layout from kitro.ch/solution
+   AVIRA v2 DESIGN TOKENS
+   Mood: brushed 316L steel — dark industrial luxury
+   Font: Jost 200
    ============================================ */
-
 :root {
-  /* AVIRA color palette */
-  --avira-cream:        #F7F3E8;   /* page background — warm off-white */
-  --avira-red:          #E93A37;   /* primary brand color — coral red */
-  --avira-black:        #000000;
-  --avira-muted:        #85837C;   /* muted warm gray — body text on cream */
-  --avira-dark-olive:   #6E6E68;   /* dark section backgrounds */
-  --avira-mid-gray:     #85837C;   /* getting-started section bg */
-  --avira-footer:       #323232;   /* footer background */
-  --avira-cream-text:   #F7F3E8;   /* text on dark sections */
-  --avira-muted-dark:   #D3D1C9;   /* muted text on dark sections */
-  --avira-inactive:     #ADAAA2;   /* inactive tabs / labels */
-  --avira-near-white:   #FBF9F4;   /* button text on primary */
+  /* AVIRA v1 steel palette */
+  --bg:    #7e8285;   /* mid satin 316L brushed steel — page background */
+  --ink:   #0d0d0d;   /* near black */
+  --mid:   #1e2022;   /* dark muted steel — dark sections */
+  --rule:  rgba(10,10,10,0.22);
+  --light: #dfe1e2;   /* light steel — text on dark */
 
-  /* shadcn tokens — mapped to AVIRA */
-  --background: 247 243 232;  /* cream */
-  --foreground: 0 0 0;
-  --card: 247 243 232;
-  --card-foreground: 0 0 0;
-  --popover: 247 243 232;
-  --popover-foreground: 0 0 0;
-  --primary: 233 58 55;        /* avira red */
-  --primary-foreground: 251 249 244;
-  --secondary: 110 110 104;
-  --secondary-foreground: 247 243 232;
-  --muted: 173 170 162;
-  --muted-foreground: 133 131 124;
-  --accent: 233 58 55;
-  --accent-foreground: 251 249 244;
-  --destructive: 233 58 55;
-  --border: 0 0 0 / 10%;
-  --input: 0 0 0 / 15%;
-  --ring: 233 58 55;
-  --radius: 0.25rem;  /* 4px — matches Kitro's sharp corners */
-  --sidebar: 247 243 232;
-  --sidebar-foreground: 0 0 0;
-  --sidebar-primary: 233 58 55;
-  --sidebar-primary-foreground: 251 249 244;
-  --sidebar-accent: 110 110 104;
-  --sidebar-accent-foreground: 247 243 232;
-  --sidebar-border: 0 0 0 / 10%;
-  --sidebar-ring: 233 58 55;
+  /* Derived tokens */
+  --avira-bg:          #7e8285;
+  --avira-ink:         #0d0d0d;
+  --avira-mid:         #1e2022;
+  --avira-light:       #dfe1e2;
+  --avira-light-dim:   rgba(223,225,226,0.55);
+  --avira-rule:        rgba(10,10,10,0.22);
+  --avira-steel-dark:  #5a5d60;
+  --avira-steel-mid:   #7e8285;
+  --avira-steel-light: #a8abae;
+
+  /* shadcn tokens mapped to steel palette */
+  --background: 126 130 133;
+  --foreground: 13 13 13;
+  --card: 30 32 34;
+  --card-foreground: 223 225 226;
+  --popover: 30 32 34;
+  --popover-foreground: 223 225 226;
+  --primary: 223 225 226;
+  --primary-foreground: 13 13 13;
+  --secondary: 90 93 96;
+  --secondary-foreground: 223 225 226;
+  --muted: 90 93 96;
+  --muted-foreground: 168 171 174;
+  --accent: 223 225 226;
+  --accent-foreground: 13 13 13;
+  --destructive: 200 60 60;
+  --border: 10 10 10 / 22%;
+  --input: 10 10 10 / 30%;
+  --ring: 223 225 226;
+  --radius: 0.125rem;  /* very sharp — 2px */
 }
 
 /* ============================================
    GLOBAL BASE STYLES
    ============================================ */
-
 @layer base {
   * {
-    @apply border-border outline-ring/50;
     box-sizing: border-box;
   }
 
@@ -106,68 +91,65 @@
   }
 
   body {
-    background-color: var(--avira-cream);
-    color: var(--avira-black);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 400;
+    /* Brushed 316L steel texture — pure CSS, no image */
+    background-color: #7e8285;
+    background-image:
+      /* Diagonal sheen */
+      linear-gradient(
+        112deg,
+        rgba(0,0,0,0.38) 0%,
+        rgba(255,255,255,0.52) 40%,
+        rgba(0,0,0,0.32) 100%
+      ),
+      /* Vertical brush grain */
+      repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.055) 0px, rgba(255,255,255,0.055) 1px,
+        rgba(0,0,0,0.040)       1px, rgba(0,0,0,0.040)       2px,
+        transparent             2px, transparent             3px
+      );
+    background-size: 100vw 100vh, 3px 100vh;
+    background-attachment: fixed;
+    color: #0d0d0d;
+    font-family: var(--font-sans), 'Jost', sans-serif;
+    font-weight: 200;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: var(--font-sans), 'Jost', sans-serif;
+    font-weight: 200;
     line-height: 1.05;
     margin: 0;
+    color: #dfe1e2;
   }
 
-  p {
-    margin: 0;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+  p { margin: 0; }
+  a { text-decoration: none; color: inherit; }
+  ul { list-style: none; margin: 0; padding: 0; }
 }
 
 /* ============================================
-   GLOBAL UTILITY CLASSES
+   UTILITY CLASSES
    ============================================ */
+.no-scrollbar          { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
-/* Hide scrollbar but keep scroll functionality */
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Fade-up entrance animation */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Fade-up on scroll */
 .fade-up {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
 
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Dark steel section overlay — sections that sit on top of body bg */
+.steel-section {
+  background-color: rgba(30, 32, 34, 0.92);
+  backdrop-filter: blur(0px);
+}
+
+.steel-section-mid {
+  background-color: rgba(90, 93, 96, 0.85);
 }

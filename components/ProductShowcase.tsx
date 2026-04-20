@@ -1,128 +1,47 @@
+'use client'
+
+import dynamic from 'next/dynamic'
+
+const Tray3D = dynamic(() => import('./Tray3D'), { ssr: false })
+
 export default function ProductShowcase() {
   return (
-    <section
-      style={{
-        backgroundColor: "#6E6E68",
-        height: "885px",
-        width: "100%",
-        position: "relative",
-        overflow: "hidden",
-      }}
-      className="max-md:!h-[400px]"
-    >
-      {/* Centered product placeholder */}
-      <div
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: "500px",
-          height: "500px",
-          backgroundColor: "#5A5A56",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "#C8C6C0",
-          fontSize: "14px",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-        }}
-        className="max-md:!w-[280px] max-md:!h-[280px]"
-      >
-        AVIRA TRAY
-      </div>
+    <section style={{ backgroundColor: '#1e2022', position: 'relative', overflow: 'hidden' }}>
+      {/* Tray3D canvas — full width, 700px tall */}
+      <Tray3D height={700} autoSpin={true} />
 
-      {/* Spec card */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "40px",
-          right: "40px",
-          backgroundColor: "#F7F3E8",
-          padding: "20px 24px",
-          borderRadius: "4px",
-          width: "200px",
-        }}
-        className="max-md:!bottom-4 max-md:!right-4 max-md:!p-3"
-      >
-        {/* MATERIAL */}
-        <p
-          style={{
-            fontSize: "11px",
-            fontWeight: 400,
-            color: "#85837C",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            fontFamily: "var(--font-sans)",
-            marginBottom: "4px",
-          }}
-        >
-          MATERIAL
-        </p>
-        <p
-          style={{
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "#000000",
-            fontFamily: "var(--font-sans)",
-            marginBottom: "16px",
-          }}
-        >
-          316L MARINE STEEL
-        </p>
-
-        {/* DIMENSIONS */}
-        <p
-          style={{
-            fontSize: "11px",
-            fontWeight: 400,
-            color: "#85837C",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            fontFamily: "var(--font-sans)",
-            marginBottom: "4px",
-          }}
-        >
-          DIMENSIONS
-        </p>
-        <p
-          style={{
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "#000000",
-            fontFamily: "var(--font-sans)",
-            marginBottom: "16px",
-          }}
-        >
-          320 × 240 mm
-        </p>
-
-        {/* FINISH */}
-        <p
-          style={{
-            fontSize: "11px",
-            fontWeight: 400,
-            color: "#85837C",
-            textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            fontFamily: "var(--font-sans)",
-            marginBottom: "4px",
-          }}
-        >
-          FINISH
-        </p>
-        <p
-          style={{
-            fontSize: "16px",
-            fontWeight: 700,
-            color: "#000000",
-            fontFamily: "var(--font-sans)",
-          }}
-        >
-          BRUSHED
-        </p>
+      {/* Spec card — absolute bottom-right */}
+      <div style={{
+        position: 'absolute', bottom: 40, right: 40,
+        backgroundColor: 'rgba(13,13,13,0.85)',
+        border: '1px solid rgba(223,225,226,0.15)',
+        padding: '20px 24px', borderRadius: 2, width: 220,
+        backdropFilter: 'blur(4px)',
+      }}>
+        {[
+          { label: 'MATERIAL', value: '316L MARINE STEEL' },
+          { label: 'DIMENSIONS', value: '320 × 240 mm' },
+          { label: 'FINISH', value: 'BRUSHED' },
+        ].map(({ label, value }) => (
+          <div key={label} style={{ marginBottom: 12 }}>
+            <span style={{
+              fontSize: 10,
+              color: 'rgba(223,225,226,0.45)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.12em',
+              display: 'block',
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 200,
+            }}>{label}</span>
+            <span style={{
+              fontSize: 15,
+              color: '#dfe1e2',
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 200,
+            }}>{value}</span>
+          </div>
+        ))}
       </div>
     </section>
-  );
+  )
 }

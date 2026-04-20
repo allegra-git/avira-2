@@ -27,7 +27,7 @@ const steps = [
 
 export default function GettingStarted() {
   return (
-    <section style={{ backgroundColor: '#85837C', padding: '80px 0' }}>
+    <section style={{ backgroundColor: '#1e2022', padding: '80px 0' }}>
       {/* Top area */}
       <div
         style={{
@@ -38,22 +38,24 @@ export default function GettingStarted() {
           justifyContent: 'space-between',
           alignItems: 'flex-start',
         }}
+        className="max-md:!px-6 max-md:!flex-col max-md:!gap-8"
       >
         <h2
           style={{
             fontSize: 60,
-            color: '#F7F3E8',
+            fontWeight: 200,
+            color: '#dfe1e2',
             lineHeight: 1.05,
             fontFamily: 'var(--font-sans)',
-            fontWeight: 400,
             margin: 0,
           }}
+          className="max-md:!text-[36px]"
         >
           {'get '}
           <br />
           {'your '}
           <br />
-          <strong style={{ fontWeight: 700 }}>AVIRA</strong>
+          <span style={{ letterSpacing: '0.15em' }}>AVIRA</span>
           <br />
           {'in just a '}
           <br />
@@ -61,12 +63,16 @@ export default function GettingStarted() {
         </h2>
 
         <button
+          type="button"
           style={{
-            backgroundColor: '#E93A37',
-            color: '#FBF9F4',
-            padding: '14px 20px',
-            borderRadius: 4,
-            fontSize: 16,
+            backgroundColor: '#dfe1e2',
+            color: '#0d0d0d',
+            padding: '13px 20px',
+            borderRadius: '2px',
+            fontSize: '13px',
+            fontWeight: 200,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
             fontFamily: 'var(--font-sans)',
             border: 'none',
             cursor: 'pointer',
@@ -87,6 +93,7 @@ export default function GettingStarted() {
           gap: 32,
           padding: '0 80px 80px 80px',
         }}
+        className="max-md:!grid-cols-2 max-md:!px-6"
       >
         {steps.map((step) => (
           <div key={step.num} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -94,7 +101,9 @@ export default function GettingStarted() {
             <span
               style={{
                 fontSize: 14,
-                color: step.active ? '#E93A37' : '#D3D1C9',
+                fontWeight: 200,
+                color: step.active ? '#dfe1e2' : 'rgba(223,225,226,0.25)',
+                opacity: step.active ? 0.9 : 1,
                 fontFamily: 'var(--font-sans)',
               }}
             >
@@ -104,10 +113,11 @@ export default function GettingStarted() {
             {/* Title */}
             <span
               style={{
-                fontSize: step.active ? 32 : 24,
-                fontWeight: step.active ? 700 : 400,
-                color: step.active ? '#F7F3E8' : '#D3D1C9',
+                fontSize: step.active ? 28 : 22,
+                fontWeight: 200,
+                color: step.active ? '#dfe1e2' : 'rgba(223,225,226,0.25)',
                 textTransform: 'uppercase',
+                letterSpacing: step.active ? '0.05em' : undefined,
                 fontFamily: 'var(--font-sans)',
                 lineHeight: 1.1,
               }}
@@ -119,8 +129,9 @@ export default function GettingStarted() {
             {step.active && step.desc && (
               <p
                 style={{
-                  fontSize: 16,
-                  color: '#D3D1C9',
+                  fontSize: 15,
+                  fontWeight: 200,
+                  color: 'rgba(223,225,226,0.5)',
                   lineHeight: 1.6,
                   margin: 0,
                   fontFamily: 'var(--font-sans)',
@@ -132,17 +143,6 @@ export default function GettingStarted() {
           </div>
         ))}
       </div>
-
-      <style>{`
-        @media (max-width: 767px) {
-          .getting-started-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-          }
-          .getting-started-heading {
-            font-size: 36px !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }
