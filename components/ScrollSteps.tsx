@@ -81,9 +81,13 @@ export default function ScrollSteps() {
     return () => observer.disconnect()
   }, [])
 
-  // Click handler — scroll to panel
+  // Click handler — highlight tab immediately, then scroll to panel
   const scrollToStep = (index: number) => {
-    panelRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    setActiveStep(index)
+    const el = panelRefs.current[index]
+    if (!el) return
+    const top = el.getBoundingClientRect().top + window.scrollY - 160
+    window.scrollTo({ top, behavior: 'smooth' })
   }
 
   return (
