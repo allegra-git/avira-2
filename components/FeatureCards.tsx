@@ -23,7 +23,7 @@ const cards = [
 
 export default function FeatureCards() {
   return (
-    <section style={{ backgroundColor: '#0d0d0d', paddingTop: '80px', paddingBottom: '80px' }}>
+    <section style={{ backgroundColor: 'rgba(13,13,13,0.93)', paddingTop: '80px', paddingBottom: '80px' }}>
       <style>{`
         .fc-card {
           border: 1px solid rgba(223,225,226,0.08);

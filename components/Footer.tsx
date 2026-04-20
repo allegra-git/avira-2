@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer style={{ backgroundColor: '#0d0d0d', color: 'rgba(223,225,226,0.55)' }}>
+    <footer style={{ backgroundColor: 'rgba(13,13,13,0.96)', color: 'rgba(223,225,226,0.55)' }}>
       <style>{`
         .footer-link {
           font-size: 15px;

@@ -6,7 +6,7 @@ const stats = [
 
 export default function DarkStatement() {
   return (
-    <section style={{ backgroundColor: '#0d0d0d' }}>
+    <section style={{ backgroundColor: 'rgba(13,13,13,0.93)' }}>
       {/* Top two-column text block */}
       <div
         style={{
@@ -180,7 +180,7 @@ export default function DarkStatement() {
         style={{
           width: '100%',
           height: '700px',
-          backgroundColor: '#1e2022',
+          backgroundColor: 'rgba(30,32,34,0.92)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

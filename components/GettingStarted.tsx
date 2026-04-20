@@ -27,7 +27,7 @@ const steps = [
 
 export default function GettingStarted() {
   return (
-    <section style={{ backgroundColor: '#1e2022', padding: '80px 0' }}>
+    <section style={{ backgroundColor: 'rgba(30,32,34,0.96)', padding: '80px 0' }}>
       {/* Top area */}
       <div
         style={{

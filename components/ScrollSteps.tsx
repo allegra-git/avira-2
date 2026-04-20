@@ -81,17 +81,13 @@ export default function ScrollSteps() {
     return () => observer.disconnect()
   }, [])
 
-  // Click handler — highlight tab immediately, then scroll to panel
   const scrollToStep = (index: number) => {
     setActiveStep(index)
-    const el = panelRefs.current[index]
-    if (!el) return
-    const top = el.getBoundingClientRect().top + window.scrollY - 160
-    window.scrollTo({ top, behavior: 'smooth' })
+    panelRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   return (
-    <section style={{ position: 'relative', backgroundColor: '#1e2022' }}>
+    <section style={{ position: 'relative', backgroundColor: 'rgba(30,32,34,0.96)' }}>
       {/* Sticky tab bar */}
       <div
         style={{
@@ -151,6 +147,7 @@ export default function ScrollSteps() {
             alignItems: 'center',
             padding: '0 80px',
             gap: 80,
+            scrollMarginTop: 140,
           }}
         >
           {/* Left: image placeholder */}

@@ -36,8 +36,15 @@ export default function Tray3D({ height = 600, autoSpin = true }: { height?: num
     controls.minPolarAngle = 0.2
     controls.maxPolarAngle = Math.PI / 2 - 0.05
     controls.enablePan = false
+    controls.enableZoom = false  // disabled until mouse is over canvas
     controls.autoRotate = autoSpin
     controls.autoRotateSpeed = 0.8
+
+    // Only allow zoom/scroll when mouse is actually over the canvas
+    const onEnter = () => { controls.enableZoom = true }
+    const onLeave = () => { controls.enableZoom = false }
+    mount.addEventListener('mouseenter', onEnter)
+    mount.addEventListener('mouseleave', onLeave)
 
     // Tray material — brushed 316L stainless steel
     const mat = new THREE.MeshStandardMaterial({
@@ -131,6 +138,8 @@ export default function Tray3D({ height = 600, autoSpin = true }: { height?: num
       cancelAnimationFrame(animId)
       window.removeEventListener('resize', onResize)
       renderer.domElement.removeEventListener('pointerdown', onInteract)
+      mount.removeEventListener('mouseenter', onEnter)
+      mount.removeEventListener('mouseleave', onLeave)
       controls.dispose()
       renderer.dispose()
       if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
