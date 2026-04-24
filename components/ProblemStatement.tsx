@@ -7,7 +7,7 @@ const materials = [
 
 export default function ProblemStatement() {
   return (
-    <section style={{ backgroundColor: 'rgba(30,32,34,0.92)', paddingTop: '64px' }}>
+    <section id="materials" style={{ backgroundColor: 'rgba(30,32,34,0.92)', paddingTop: '64px' }}>
       <style>{`
         .ps-link { opacity: 0.7; transition: opacity 0.2s; }
         .ps-link:hover { opacity: 1.0; }

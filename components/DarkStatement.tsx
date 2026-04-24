@@ -6,7 +6,7 @@ const stats = [
 
 export default function DarkStatement() {
   return (
-    <section style={{ backgroundColor: 'rgba(13,13,13,0.93)' }}>
+    <section id="about" style={{ backgroundColor: 'rgba(13,13,13,0.93)' }}>
       {/* Top two-column text block */}
       <div
         style={{

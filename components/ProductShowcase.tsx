@@ -6,7 +6,7 @@ const Tray3D = dynamic(() => import('./Tray3D'), { ssr: false })
 
 export default function ProductShowcase() {
   return (
-    <section style={{ backgroundColor: 'rgba(30,32,34,0.96)', position: 'relative', overflow: 'hidden' }}>
+    <section id="collection" style={{ backgroundColor: 'rgba(30,32,34,0.96)', position: 'relative', overflow: 'hidden' }}>
       {/* Tray3D canvas — full width, 700px tall */}
       <Tray3D height={700} autoSpin={true} />
 

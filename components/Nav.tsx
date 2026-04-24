@@ -46,7 +46,7 @@ export default function Nav() {
           {(['Collection', 'Craft', 'Materials', 'About'] as const).map((label) => (
             <li key={label}>
               <a
-                href={`/${label.toLowerCase()}`}
+                href={`#${label.toLowerCase()}`}
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',

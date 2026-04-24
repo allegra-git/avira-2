@@ -87,7 +87,7 @@ export default function ScrollSteps() {
   }
 
   return (
-    <section style={{ position: 'relative', backgroundColor: 'rgba(30,32,34,0.96)' }}>
+    <section id="craft" style={{ position: 'relative', backgroundColor: 'rgba(30,32,34,0.96)' }}>
       {/* Sticky tab bar */}
       <div
         style={{
