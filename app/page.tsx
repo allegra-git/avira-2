@@ -1,33 +1,17 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+// Pure-CSS write-on animation — no JS state, works in all browsers including Safari.
+// Each letter gets an increasing animation-delay so they appear one by one left-to-right.
 
 const LETTERS = ['A', 'V', 'I', 'R', 'A']
-const DELAY_START = 700   // ms before first letter
-const LETTER_STEP = 340   // ms between each letter start
-const LETTER_DUR  = 480   // ms each letter takes to draw
+const STEP    = 0.34  // seconds between letter starts
+const DUR     = 0.52  // seconds each letter takes to draw
+const START   = 0.5   // initial pause before first letter
+
+// Total time when last letter finishes
+const LAST_DONE = START + (LETTERS.length - 1) * STEP + DUR
 
 export default function TeaserPage() {
-  const [active, setActive]       = useState<boolean[]>(Array(5).fill(false))
-  const [showTagline, setShowTagline] = useState(false)
-  const [showCta, setShowCta]     = useState(false)
-
-  useEffect(() => {
-    const timers: ReturnType<typeof setTimeout>[] = []
-
-    LETTERS.forEach((_, i) => {
-      timers.push(setTimeout(() => {
-        setActive(prev => { const n = [...prev]; n[i] = true; return n })
-      }, DELAY_START + i * LETTER_STEP))
-    })
-
-    const allDone = DELAY_START + (LETTERS.length - 1) * LETTER_STEP + LETTER_DUR
-    timers.push(setTimeout(() => setShowTagline(true), allDone + 200))
-    timers.push(setTimeout(() => setShowCta(true),     allDone + 700))
-
-    return () => timers.forEach(clearTimeout)
-  }, [])
-
   return (
     <main style={{
       height: '100dvh',
@@ -39,6 +23,7 @@ export default function TeaserPage() {
       overflow: 'hidden',
       backgroundColor: '#0d0d0d',
     }}>
+
       {/* Brushed steel grain overlay */}
       <div style={{
         position: 'absolute',
@@ -55,19 +40,47 @@ export default function TeaserPage() {
       }} />
 
       <style>{`
+        /* Write-on: clip from right, reveal left-to-right */
         @keyframes write-in {
-          from { clip-path: inset(0 101% 0 0); }
-          to   { clip-path: inset(0 0%   0 0); }
+          from {
+            -webkit-clip-path: inset(0 101% 0 0);
+            clip-path: inset(0 101% 0 0);
+          }
+          to {
+            -webkit-clip-path: inset(0 0% 0 0);
+            clip-path: inset(0 0% 0 0);
+          }
         }
+
+        /* Tagline and CTA fade in after all letters drawn */
+        @keyframes fade-up-in {
+          from { opacity: 0; transform: translateY(6px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+
         .avira-letter {
           display: inline-block;
+          -webkit-clip-path: inset(0 101% 0 0);
           clip-path: inset(0 101% 0 0);
+          animation: write-in ${DUR}s cubic-bezier(0.22, 0, 0.38, 1) forwards;
         }
-        .avira-letter.drawn {
-          animation: write-in ${LETTER_DUR}ms cubic-bezier(0.22, 0, 0.36, 1) forwards;
+
+        .avira-tagline {
+          opacity: 0;
+          animation: fade-up-in 1s ease forwards;
+          animation-delay: ${(LAST_DONE + 0.2).toFixed(2)}s;
         }
-        .cta-link { transition: color 0.2s, border-color 0.2s; }
-        .cta-link:hover { color: #dfe1e2 !important; border-color: rgba(223,225,226,0.5) !important; }
+
+        .avira-cta {
+          opacity: 0;
+          animation: fade-up-in 0.9s ease forwards;
+          animation-delay: ${(LAST_DONE + 0.7).toFixed(2)}s;
+        }
+
+        .avira-cta:hover {
+          color: #dfe1e2 !important;
+          border-color: rgba(223,225,226,0.55) !important;
+        }
       `}</style>
 
       {/* A V I R A */}
@@ -75,13 +88,14 @@ export default function TeaserPage() {
         {LETTERS.map((letter, i) => (
           <span
             key={i}
-            className={`avira-letter${active[i] ? ' drawn' : ''}`}
+            className="avira-letter"
             style={{
               fontSize: 'clamp(72px, 14vw, 160px)',
               fontFamily: 'var(--font-sans)',
               fontWeight: 200,
               color: '#dfe1e2',
               letterSpacing: '0.22em',
+              animationDelay: `${(START + i * STEP).toFixed(2)}s`,
             }}
           >
             {letter}
@@ -90,26 +104,27 @@ export default function TeaserPage() {
       </div>
 
       {/* Tagline */}
-      <p style={{
-        fontFamily: 'var(--font-sans)',
-        fontSize: 11,
-        fontWeight: 200,
-        color: 'rgba(223,225,226,0.35)',
-        letterSpacing: '0.55em',
-        textTransform: 'uppercase',
-        marginTop: 28,
-        position: 'relative',
-        zIndex: 1,
-        opacity: showTagline ? 1 : 0,
-        transition: 'opacity 1.1s ease',
-      }}>
+      <p
+        className="avira-tagline"
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: 11,
+          fontWeight: 200,
+          color: 'rgba(223,225,226,0.35)',
+          letterSpacing: '0.55em',
+          textTransform: 'uppercase',
+          marginTop: 28,
+          position: 'relative',
+          zIndex: 1,
+        }}
+      >
         Objects of Purpose
       </p>
 
       {/* Enter CTA */}
       <a
         href="/collection"
-        className="cta-link"
+        className="avira-cta"
         style={{
           position: 'absolute',
           bottom: 56,
@@ -121,10 +136,9 @@ export default function TeaserPage() {
           textTransform: 'uppercase',
           textDecoration: 'none',
           zIndex: 1,
-          opacity: showCta ? 1 : 0,
-          transition: 'opacity 0.9s ease',
           paddingBottom: 4,
           borderBottom: '1px solid rgba(223,225,226,0.18)',
+          transition: 'color 0.2s, border-color 0.2s',
         }}
       >
         Enter Collection
