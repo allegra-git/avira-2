@@ -1,5 +1,6 @@
 import Nav from "@/components/Nav"
 import ProblemStatement from "@/components/ProblemStatement"
+import WasteStats from "@/components/WasteStats"
 import DarkStatement from "@/components/DarkStatement"
 import Footer from "@/components/Footer"
 
@@ -16,6 +17,7 @@ export default function MaterialsPage() {
         </div>
       </section>
       <ProblemStatement />
+      <WasteStats />
       <DarkStatement />
       <Footer />
     </main>
