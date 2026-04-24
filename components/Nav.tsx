@@ -46,7 +46,7 @@ export default function Nav() {
           {(['Collection', 'Craft', 'Materials', 'About'] as const).map((label) => (
             <li key={label}>
               <a
-                href={`#${label.toLowerCase()}`}
+                href={`/${label.toLowerCase()}`}
                 style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
@@ -68,7 +68,7 @@ export default function Nav() {
         {/* Right side — hidden on mobile */}
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="/shop"
+            href="/collection"
             style={{
               fontFamily: 'var(--font-sans)',
               backgroundColor: '#dfe1e2',
@@ -86,7 +86,7 @@ export default function Nav() {
             Shop Now
           </a>
           <a
-            href="/contact"
+            href="/about"
             style={{
               fontFamily: 'var(--font-sans)',
               backgroundColor: 'transparent',
